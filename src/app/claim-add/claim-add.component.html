@@ -1,0 +1,107 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/claims']"><mat-icon>list</mat-icon></a>
+  </div>
+  <div *ngIf="claimSubmitted"><span class="col-green"> Claim Submitted Successfuly. Your Claim Reference # {{claimId}}</span></div>
+  <mat-card class="example-card">
+    <form [formGroup]="claimForm" (ngSubmit)="onFormSubmit(claimForm.value)">
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Patient Name" formControlName="patientName"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!claimForm.get('patientName').valid && claimForm.get('patientName').touched">Please enter Patient Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker1" placeholder="Patient DOB" formControlName="patientDateOfBirth"  id="patientDateOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+     </mat-form-field>
+
+     <mat-form-field class="example-full-width">
+        <mat-select placeholder="Select Gender" formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+            {{gender.viewValue}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+      <mat-form-field class="example-half-width">
+        <input matInput placeholder="Patient Address" formControlName="patientAddress"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!claimForm.get('patientAddress').valid && claimForm.get('patientAddress').touched">Please enter Patient Address</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-half-width">
+        <input matInput placeholder="Patient City" formControlName="patientCity"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!claimForm.get('patientCity').valid && claimForm.get('patientCity').touched">Please enter Patient City</span>
+        </mat-error>
+      </mat-form-field>
+
+       <mat-form-field class="example-half-width">
+        <input matInput placeholder="Patient State" formControlName="patientState"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!claimForm.get('patientState').valid && claimForm.get('patientState').touched">Please enter Patient State</span>
+        </mat-error>
+      </mat-form-field>
+      
+
+      <mat-form-field class="example-half-width">
+        <input matInput placeholder="Patient Zip" formControlName="patientZip"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!claimForm.get('patientZip').valid && claimForm.get('patientZip').touched">Please enter Patient Zip</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Claim Amount" formControlName="amountClaimed"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!claimForm.get('amountClaimed').valid && claimForm.get('amountClaimed').touched">Please enter Claim Amount</span>
+        </mat-error>
+      </mat-form-field>
+
+       <mat-form-field class="example-full-width">
+        <mat-select placeholder="Select Provider" formControlName="medicalProviderId">
+            <mat-option *ngFor="let provider of providers" [value]="provider.value">
+            {{provider.viewValue}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+        <mat-select placeholder="Select Physician" formControlName="staffId">
+            <mat-option *ngFor="let physician of physicians" [value]="physician.value">
+            {{physician.viewValue}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+        <mat-select placeholder="Select Payer" formControlName="insuranceCompanyId">
+            <mat-option *ngFor="let payer of payers" [value]="payer.value">
+            {{payer.viewValue}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+      
+    
+     
+
+      <div class="button-row">
+        <button type="submit"  mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>
