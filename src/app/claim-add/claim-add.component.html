@@ -34,9 +34,6 @@
       <mat-form-field class="example-half-width">
         <input matInput placeholder="Patient Address" formControlName="patientAddress"
                [errorStateMatcher]="matcher">
-        <mat-error>
-          <span *ngIf="!claimForm.get('patientAddress').valid && claimForm.get('patientAddress').touched">Please enter Patient Address</span>
-        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-half-width">

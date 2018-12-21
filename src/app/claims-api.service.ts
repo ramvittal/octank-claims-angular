@@ -9,7 +9,7 @@ import { Claim } from './claim';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = 'https://85eec123wi.execute-api.us-west-2.amazonaws.com/test/claims';
+const apiUrl = 'https://q6yjlthyvi.execute-api.us-west-2.amazonaws.com/Prod/claims';
 
 interface ServerData {
   claims: Claim[];
@@ -36,8 +36,8 @@ export class ClaimsApiService {
 }
 
 
-getClaims (): Observable<Claim[]> {
-  return this.http.get<ServerData>(apiUrl + '?fromDate=2018-12-17%2000:00&toDate=2018-12-17%2023:59')
+getClaims (from: string, to: string): Observable<Claim[]> {
+  return this.http.get<ServerData>(apiUrl + '?fromDate=' + from + '%2000:00&toDate=' + to + '%2023:59')
     .pipe(map(res => <Claim[]>res.claims),
             tap(claims => console.log('fetched claims:' + claims.length)),
         catchError(this.handleError('getClaims', []))

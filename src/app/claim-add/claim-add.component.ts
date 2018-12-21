@@ -70,7 +70,7 @@ export class ClaimAddComponent implements OnInit {
             'patientName': [null, Validators.required],
              'gender': ['Male', Validators.required],
             'patientDateOfBirth': [null, Validators.required],
-             'patientAddress': [null, Validators.required],
+              'patientAddress': [null, Validators.nullValidator],
               'patientCity': [null, Validators.required],
                'patientState': [null, Validators.required],
              'patientZip': [null, Validators.required],
